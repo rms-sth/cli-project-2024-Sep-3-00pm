@@ -7,14 +7,6 @@ import sqlite3
 # git config --global user.name "Ramesh Pradhan"
 # git config --global user.email "pyrameshpradhan@gmail.com"
 
-def create_connection():
-    try:
-        con = sqlite3.connect("users.sqlite3")
-        return con
-    except Exception as e:
-        print(e)
-
-
 INPUT_STRING = """
 Enter the option: 
     1. CREATE TABLE
@@ -28,6 +20,14 @@ Enter the option:
     9. UPDATE user
     10. Press any key to EXIT
 """
+
+
+def create_connection():
+    try:
+        con = sqlite3.connect("users.sqlite3")
+        return con
+    except Exception as e:
+        print(e)
 
 
 def create_table(con):
@@ -118,6 +118,7 @@ def delete_user_by_id(con, user_id):
     cur.execute("DELETE FROM users where id = ?", (user_id,))
     con.commit()
     print(f"User with id [{user_id}] was successfully deleted.")
+
 
 COLUMNS = (
     "first_name",
